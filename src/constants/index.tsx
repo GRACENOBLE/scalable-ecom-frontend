@@ -19,3 +19,26 @@ export const NavLinks: {
     link: "/",
   },
 ];
+
+export const CategoriesList = [
+  "Electronics",
+  "Fashion",
+  "Home & Kitchen",
+  "Beauty & Personal Care",
+  "Sports & Outdoors",
+  "Toys & Games",
+  "Books",
+  "Automotive",
+  "Health & Wellness",
+  "Groceries",
+  "Office Supplies",
+  "Pet Supplies",
+  "Baby Products",
+  "Tools & Hardware",
+  "Garden & Outdoor",
+  "Music & Instruments",
+  "Art & Craft",
+  "Stationery",
+  "Software",
+  "Movies & TV",
+];

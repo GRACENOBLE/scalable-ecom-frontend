@@ -1,17 +1,14 @@
-"use client";
-import { cn } from "@/lib/utils";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import { useState } from "react";
+import { ShoppingCart } from "lucide-react";
+
 
 const Cart = () => {
 
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <MenuButton
-          className="inline-flex w-full justify-center gap-x-1.5 rounded-md text-sm font-medium"
-        >
+        <MenuButton className="inline-flex w-full justify-center gap-x-1.5 rounded-md text-sm font-medium">
+          <ShoppingCart size={20} />
           Cart
         </MenuButton>
       </div>
@@ -45,16 +42,6 @@ const Cart = () => {
               License
             </a>
           </MenuItem>
-          <form action="#" method="POST">
-            <MenuItem>
-              <button
-                type="submit"
-                className="block w-full px-4 py-2 text-left text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900 data-[focus]:outline-none"
-              >
-                Sign out
-              </button>
-            </MenuItem>
-          </form>
         </div>
       </MenuItems>
     </Menu>

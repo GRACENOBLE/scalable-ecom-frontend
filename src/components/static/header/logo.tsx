@@ -1,11 +1,12 @@
-import { ShoppingCart } from "lucide-react";
+import { ShoppingBasket } from "lucide-react";
+import Link from "next/link";
 
 const Logo = () => {
   return (
-    <div className="text-2xl font-semibold flex items-center gap-2">
-      <ShoppingCart className="text-orange-500" />
+    <Link className="text-2xl font-semibold flex items-center gap-2" href={"/"}>
+      <ShoppingBasket className="text-orange-500 -translate-y-1" size={32} />
       Shopcart
-    </div>
+    </Link>
   );
 };
 

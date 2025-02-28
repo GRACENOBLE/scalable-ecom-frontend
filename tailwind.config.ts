@@ -10,6 +10,8 @@ export default {
     extend: {
       colors: {
         sbone: "#F2EBE3",
+        primary: "#FFC000",
+        accent: "#2C3539",
         background: "var(--background)",
         foreground: "var(--foreground)",
       },

@@ -9,7 +9,7 @@ const Header = () => {
   return (
     <header>
       <Container>
-        <div className="py-4 flex justify-between">
+        <div className="py-4 flex justify-between items-center">
           <Logo />
           <Navigation />
           <SearchBar />

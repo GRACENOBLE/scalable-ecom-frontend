@@ -10,6 +10,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import LoginDialogContent from "@/components/login-dialog-content";
+import LoginDialog from "@/components/login-dialog-content";
 
 const UserButton = () => {
   const user = null;
@@ -62,7 +66,7 @@ const UserButton = () => {
       </DropdownMenu>
     );
   } else {
-    return <Button>Login</Button>;
+    return <LoginDialog />;
   }
 };
 

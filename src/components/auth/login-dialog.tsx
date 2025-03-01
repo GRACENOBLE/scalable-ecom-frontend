@@ -15,6 +15,10 @@ import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { cn } from "@/lib/utils";
 import PasswordInput from "../ui/password-input";
+import LoginForm from "./loginForm";
+import SignUpForm from "./SignUpForm";
+
+// import FormSchema from "@/schemas"
 
 const LoginDialog = () => {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -24,79 +28,31 @@ const LoginDialog = () => {
       <DialogTrigger asChild>
         <Button>Login</Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] bg-white">
+      <DialogContent className="sm:max-w-[425px] bg-white transition-transform ease-in-out duration-300">
         <DialogHeader className="w-full">
-          <DialogTitle className="w-full flex overflow-hidden">
-            <p
-              className={cn("w-full shrink-0", {
-                "-translate-x-[100%]": isSignUp,
-              })}
-            >
-              Login to your account
-            </p>
-            <p
-              className={cn("w-full shrink-0", {
-                "-translate-x-[100%]": isSignUp,
-              })}
-            >
-              Create an account
-            </p>
+          <DialogTitle className="w-full">
+            {isSignUp ? "Create an account" : "Login to your account"}
           </DialogTitle>
           {/* <DialogDescription>Login to continue</DialogDescription> */}
         </DialogHeader>
-        <form className="flex flex-col gap-2 mb-6 mt-2">
-          <div className="">
-            <Label htmlFor="name" className="text-right">
-              Email
-            </Label>
-            <Input
-              id="name"
-              placeholder="example@email.com"
-              className="col-span-3"
-            />
-          </div>
+        <div className="flex items-center gap-4 w-full">
+          {isSignUp ? <SignUpForm /> : <LoginForm />}
+        </div>
 
-          {/*  */}
-          <PasswordInput label={"Password"} />
-
-          <div
-            className={cn("", {
-              hidden: !isSignUp,
-            })}
-          >
-            <PasswordInput label={"Repeat password"} />
-          </div>
-        </form>
-        <Button className="mb-4">Submit</Button>
         <DialogFooter className=" w-full flex overflow-hidden justify-start">
-          <div
-            className={cn("flex gap-1 justify-center w-full shrink-0", {
-              "-translate-x-[100%]": isSignUp,
-            })}
-          >
+          <div className={cn("flex gap-1 justify-center w-full ")}>
             <p className=" text-center">Dont have an account? </p>
             <button
               onClick={() => {
-                setIsSignUp(true);
+                if (isSignUp) {
+                  setIsSignUp(false);
+                } else {
+                  setIsSignUp(true);
+                }
               }}
               className="hover:underline"
             >
-              sign up
-            </button>
-          </div>
-          <div
-            className={cn("flex gap-1 justify-center w-full shrink-0", {
-              "-translate-x-[100%]": isSignUp,
-            })}
-          >
-            <p className=" text-center">Already have an account?</p>
-            <button
-              onClick={() => {
-                setIsSignUp(false);
-              }}
-              className="hover:underline"
-            >
-              sign in
+              {isSignUp ? "sign in" : "sign up"}
             </button>
           </div>
         </DialogFooter>

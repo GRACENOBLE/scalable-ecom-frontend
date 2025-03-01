@@ -5,27 +5,114 @@ import { Input } from "../ui/input";
 import PasswordInput from "../ui/password-input";
 import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
+import { SignUpFormSchema } from "@/schemas";
+import { z } from "zod";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { useState } from "react";
+import { Eye, EyeOff } from "lucide-react";
+import { HandleSignUp } from "../../../actions";
 
 const SignUpForm = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [showRepeatedPassword, setShowRepeatedPassword] = useState(false);
+  const form = useForm<z.infer<typeof SignUpFormSchema>>({
+    resolver: zodResolver(SignUpFormSchema),
+    defaultValues: {
+      username: "",
+      password: "",
+      repeatPassword: "",
+    },
+  });
+
   return (
-    <form
-      action=""
-      className={cn("flex flex-col gap-2 mb-4 mt-2 shrink-0 w-full")}
-    >
-      <div>
-        <Label htmlFor="name" className="text-right">
-          Email
-        </Label>
-        <Input
-          id="name"
-          placeholder="example@email.com"
-          className="col-span-3"
+    <Form {...form}>
+      <form
+        onSubmit={form.handleSubmit(HandleSignUp)}
+        className={cn("flex flex-col gap-2 mb-4 mt-2 shrink-0 w-full")}
+      >
+        <FormField
+          control={form.control}
+          name="username"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Username</FormLabel>
+              <FormControl>
+                <Input placeholder="shadcn" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
         />
-      </div>
-      <PasswordInput label={"Password"} />
-      <PasswordInput label={"Repeat Password"} />
-      <Button className="mt-6">Submit</Button>
-    </form>
+        <FormField
+          control={form.control}
+          name="password"
+          render={({ field }) => (
+            <FormItem>
+              <FormControl>
+                <div className="relative">
+                  <Label htmlFor="username" className="text-right">
+                    Password
+                  </Label>
+                  <Input
+                    id="username"
+                    type={showPassword ? "text" : "password"}
+                    placeholder=""
+                    className="col-span-3"
+                    {...field}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-[50%] translate-y-[12%] text-gray-500"
+                  >
+                    {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                  </button>
+                </div>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="repeatPassword"
+          render={({ field }) => (
+            <FormItem>
+              <FormControl>
+                <div className="relative">
+                  <Label htmlFor="username" className="text-right">
+                    Repeat Password
+                  </Label>
+                  <Input
+                    id="username"
+                    type={showPassword ? "text" : "password"}
+                    placeholder=""
+                    className="col-span-3"
+                    {...field}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-[50%] translate-y-[12%] text-gray-500"
+                  >
+                    {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                  </button>
+                </div>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button className="mt-6">Submit</Button>
+      </form>
+    </Form>
   );
 };
 

@@ -3,8 +3,15 @@ import { useState } from "react";
 import { Input } from "./input";
 import { Label } from "./label";
 import { Eye, EyeOff } from "lucide-react";
+import { ControllerRenderProps } from "react-hook-form";
 
-const PasswordInput = ({ label }: { label: string }) => {
+const PasswordInput = ({
+  label,
+  field,
+}: {
+  label: string;
+  field: ControllerRenderProps<{ username: string; password: string; }, "password">;
+}) => {
   const [showPassword, setShowPassword] = useState(false);
   return (
     <div className="relative">
@@ -16,6 +23,7 @@ const PasswordInput = ({ label }: { label: string }) => {
         type={showPassword ? "text" : "password"}
         placeholder=""
         className="col-span-3"
+        {...field}
       />
       <button
         type="button"

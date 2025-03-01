@@ -14,9 +14,9 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { cn } from "@/lib/utils";
+import PasswordInput from "./ui/password-input";
 
 const LoginDialog = () => {
-  const [showPassword, setShowPassword] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
   const handleSignup = () => {};
   return (
@@ -55,49 +55,20 @@ const LoginDialog = () => {
               className="col-span-3"
             />
           </div>
-          <div className="relative">
-            <Label htmlFor="username" className="text-right">
-              Password
-            </Label>
-            <Input
-              id="username"
-              type={showPassword ? "text" : "password"}
-              placeholder=""
-              className="col-span-3"
-            />
-            <button
-              type="button"
-              onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-[50%] translate-y-[12%] text-gray-500"
-            >
-              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-            </button>
-          </div>
+
+          {/*  */}
+          <PasswordInput label={"Password"} />
+
           <div
-            className={cn("relative", {
+            className={cn("", {
               hidden: !isSignUp,
             })}
           >
-            <Label htmlFor="username" className="text-right">
-              Repeat Password
-            </Label>
-            <Input
-              id="username"
-              type={showPassword ? "text" : "password"}
-              placeholder=""
-              className="col-span-3"
-            />
-            <button
-              type="button"
-              onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-[50%] translate-y-[12%] text-gray-500"
-            >
-              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-            </button>
+            <PasswordInput label={"Repeat password"} />
           </div>
         </form>
         <Button className="mb-4">Submit</Button>
-        <DialogFooter className=" border w-full flex overflow-hidden justify-start">
+        <DialogFooter className=" w-full flex overflow-hidden justify-start">
           <div
             className={cn("flex gap-1 justify-center w-full shrink-0", {
               "-translate-x-[100%]": isSignUp,

@@ -1,4 +1,4 @@
-import Container from "@/components/container";
+import Container from "@/components/common/container";
 import Logo from "./logo";
 import Navigation from "./navigation/navigation";
 import SearchBar from "./search";

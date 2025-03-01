@@ -14,7 +14,7 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { cn } from "@/lib/utils";
-import PasswordInput from "./ui/password-input";
+import PasswordInput from "../ui/password-input";
 
 const LoginDialog = () => {
   const [isSignUp, setIsSignUp] = useState(false);

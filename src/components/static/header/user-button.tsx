@@ -8,7 +8,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import LoginDialog from "@/components/login-dialog";
+import LoginDialog from "@/components/auth/login-dialog";
 
 const UserButton = () => {
   const user = null;

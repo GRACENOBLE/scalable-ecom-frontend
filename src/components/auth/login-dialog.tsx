@@ -17,9 +17,15 @@ import SignUpForm from "./SignUpForm";
 
 const LoginDialog = () => {
   const [isSignUp, setIsSignUp] = useState(false);
-  const handleSignup = () => {};
+
+  const handleClose = (isOpen: boolean) => {
+    if (!isOpen) {
+      setIsSignUp(false);
+    }
+  };
+
   return (
-    <Dialog>
+    <Dialog onOpenChange={(isOpen) => handleClose(isOpen)}>
       <DialogTrigger asChild>
         <Button>Login</Button>
       </DialogTrigger>

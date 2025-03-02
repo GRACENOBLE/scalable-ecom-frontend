@@ -36,7 +36,7 @@ const LoginForm = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className={cn("flex flex-col gap-4 mb-4 mt-6 shrink-0 w-full")}
+        className={cn("flex flex-col gap-4 mb-4 mt-2 shrink-0 w-full")}
       >
         <FormField
           control={form.control}

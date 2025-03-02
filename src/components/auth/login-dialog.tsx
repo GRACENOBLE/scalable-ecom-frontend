@@ -8,13 +8,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
 import { useState } from "react";
-import { Eye, EyeOff } from "lucide-react";
 import { cn } from "@/lib/utils";
-import PasswordInput from "../ui/password-input";
 import LoginForm from "./loginForm";
 import SignUpForm from "./SignUpForm";
 

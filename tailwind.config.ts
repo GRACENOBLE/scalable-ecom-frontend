@@ -12,6 +12,7 @@ export default {
         sbone: "#F2EBE3",
         primary: "#FFC000",
         accent: "#2C3539",
+        danger: "#fd5c63",
         background: "var(--background)",
         foreground: "var(--foreground)",
       },

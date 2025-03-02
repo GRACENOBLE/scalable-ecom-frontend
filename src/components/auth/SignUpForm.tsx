@@ -2,7 +2,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
-import PasswordInput from "../ui/password-input";
 import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
 import { SignUpFormSchema } from "@/schemas";
@@ -31,22 +30,31 @@ const SignUpForm = () => {
     },
   });
 
+  const onSubmit = (data: z.infer<typeof SignUpFormSchema>) => {
+    HandleSignUp(data);
+    form.reset(); // Reset the form fields after submission
+  };
+
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit(HandleSignUp)}
-        className={cn("flex flex-col gap-2 mb-4 mt-2 shrink-0 w-full")}
+        onSubmit={form.handleSubmit(onSubmit)}
+        className={cn("flex flex-col gap-4 mb-4 mt-2 shrink-0 w-full")}
       >
         <FormField
           control={form.control}
           name="username"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <div>
+                  <div className="flex justify-between mb-2">
+                    <FormLabel>Username</FormLabel>
+                    <FormMessage className="text-danger" />
+                  </div>
+                  <Input placeholder="shadcn" {...field} />
+                </div>
               </FormControl>
-              <FormMessage />
             </FormItem>
           )}
         />
@@ -56,27 +64,29 @@ const SignUpForm = () => {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <div className="relative">
-                  <Label htmlFor="username" className="text-right">
-                    Password
-                  </Label>
-                  <Input
-                    id="username"
-                    type={showPassword ? "text" : "password"}
-                    placeholder=""
-                    className="col-span-3"
-                    {...field}
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-[50%] translate-y-[12%] text-gray-500"
-                  >
-                    {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-                  </button>
+                <div className="">
+                  <div className="flex justify-between mb-2">
+                    <FormLabel htmlFor="username">Password</FormLabel>
+                    <FormMessage className="text-danger" />
+                  </div>
+                  <div className="relative">
+                    <Input
+                      id="username"
+                      type={showPassword ? "text" : "password"}
+                      placeholder=""
+                      className="col-span-3"
+                      {...field}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-3 top-1/4 text-gray-500"
+                    >
+                      {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                    </button>
+                  </div>
                 </div>
               </FormControl>
-              <FormMessage />
             </FormItem>
           )}
         />
@@ -87,26 +97,34 @@ const SignUpForm = () => {
             <FormItem>
               <FormControl>
                 <div className="relative">
-                  <Label htmlFor="username" className="text-right">
-                    Repeat Password
-                  </Label>
-                  <Input
-                    id="username"
-                    type={showPassword ? "text" : "password"}
-                    placeholder=""
-                    className="col-span-3"
-                    {...field}
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-[50%] translate-y-[12%] text-gray-500"
-                  >
-                    {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-                  </button>
+                  <div className="flex justify-between mb-2">
+                    <FormLabel htmlFor="username">Repeat Password</FormLabel>
+                    <FormMessage className="text-danger" />
+                  </div>
+                  <div className="relative">
+                    <Input
+                      id="username"
+                      type={showRepeatedPassword ? "text" : "password"}
+                      placeholder=""
+                      className="col-span-3"
+                      {...field}
+                    />
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setShowRepeatedPassword(!showRepeatedPassword)
+                      }
+                      className="absolute right-3 top-1/4 text-gray-500"
+                    >
+                      {showRepeatedPassword ? (
+                        <EyeOff size={20} />
+                      ) : (
+                        <Eye size={20} />
+                      )}
+                    </button>
+                  </div>
                 </div>
               </FormControl>
-              <FormMessage />
             </FormItem>
           )}
         />

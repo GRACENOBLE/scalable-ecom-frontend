@@ -23,25 +23,35 @@ const LoginForm = () => {
     resolver: zodResolver(LoginFormSchema),
     defaultValues: {
       username: "",
+      password: "",
     },
   });
+
+  const onSubmit = (data: z.infer<typeof LoginFormSchema>) => {
+    HandleLogin(data);
+    form.reset(); // Reset the form fields after submission
+  };
 
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit(HandleLogin)}
-        className={cn("flex flex-col gap-2 mb-4 mt-2 shrink-0 w-full")}
+        onSubmit={form.handleSubmit(onSubmit)}
+        className={cn("flex flex-col gap-4 mb-4 mt-6 shrink-0 w-full")}
       >
         <FormField
           control={form.control}
           name="username"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <div className="relative">
+                  <div className="flex justify-between mb-2">
+                    <FormLabel>Username</FormLabel>
+                    <FormMessage className="text-danger" />
+                  </div>
+                  <Input placeholder="shadcn" {...field} />
+                </div>
               </FormControl>
-              <FormMessage />
             </FormItem>
           )}
         />
@@ -52,9 +62,13 @@ const LoginForm = () => {
             <FormItem>
               <FormControl>
                 <div className="relative">
-                  <FormLabel htmlFor="username" className="text-right">
-                    Password
-                  </FormLabel>
+                  <div className="flex justify-between mb-2">
+                    <FormLabel htmlFor="username" className="text-right">
+                      Password
+                    </FormLabel>
+                    <FormMessage className="text-danger" />
+                  </div>
+
                   <Input
                     id="username"
                     type={showPassword ? "text" : "password"}
@@ -71,7 +85,6 @@ const LoginForm = () => {
                   </button>
                 </div>
               </FormControl>
-              <FormMessage />
             </FormItem>
           )}
         />

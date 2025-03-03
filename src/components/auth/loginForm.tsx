@@ -22,7 +22,7 @@ const LoginForm = () => {
   const form = useForm<z.infer<typeof LoginFormSchema>>({
     resolver: zodResolver(LoginFormSchema),
     defaultValues: {
-      username: "",
+      email: "",
       password: "",
     },
   });
@@ -40,13 +40,13 @@ const LoginForm = () => {
       >
         <FormField
           control={form.control}
-          name="username"
+          name="email"
           render={({ field }) => (
             <FormItem>
               <FormControl>
                 <div className="relative">
                   <div className="flex justify-between mb-2">
-                    <FormLabel>Username</FormLabel>
+                    <FormLabel>Email</FormLabel>
                     <FormMessage className="text-danger" />
                   </div>
                   <Input placeholder="shadcn" {...field} />

@@ -10,12 +10,12 @@ const Header = () => {
     <header>
       <Container>
         <div className="py-4 flex justify-between items-center">
-          <Logo />
+          {/* <Logo />
           <Navigation />
-          <SearchBar />
+          <SearchBar /> */}
           <div className="flex gap-10">
             <UserButton />
-            <Cart />
+            {/* <Cart /> */}
           </div>
         </div>
       </Container>

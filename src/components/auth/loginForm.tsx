@@ -1,3 +1,5 @@
+"use client";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Input } from "../ui/input";
@@ -16,8 +18,11 @@ import {
 import { HandleLogin } from "../../../actions";
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
+import { useAuth } from "@/context/authContext";
+import { useEffect } from "react";
 
 const LoginForm = () => {
+  const { accessToken, setAccessToken } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const form = useForm<z.infer<typeof LoginFormSchema>>({
     resolver: zodResolver(LoginFormSchema),
@@ -27,8 +32,9 @@ const LoginForm = () => {
     },
   });
 
-  const onSubmit = (data: z.infer<typeof LoginFormSchema>) => {
-    HandleLogin(data);
+  const onSubmit = async (data: z.infer<typeof LoginFormSchema>) => {
+    const token = await HandleLogin(data);
+    token && setAccessToken(token);
     form.reset(); // Reset the form fields after submission
   };
 

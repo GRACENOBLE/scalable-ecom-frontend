@@ -9,9 +9,25 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import LoginDialog from "@/components/auth/login-dialog";
+import { useAuth } from "@/context/authContext";
+import { useEffect, useState } from "react";
+import { UserData } from "../../../../actions";
 
 const UserButton = () => {
-  const user = null;
+  const [user, setUser] = useState(null);
+
+  const { accessToken } = useAuth();
+
+  useEffect(() => {
+    if (accessToken) {
+      UserData(accessToken).then((response) => {
+        setUser(response);
+      });
+    } else {
+      console.log(" no access token");
+    }
+  }, [accessToken]);
+
   if (user) {
     return (
       <DropdownMenu>
